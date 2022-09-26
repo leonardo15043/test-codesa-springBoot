@@ -23,6 +23,13 @@ public class UserService {
         return userRepository.findById(id_user);
     }
 
+    public ArrayList<UserModel> getByName(String name){
+        if(name != null){
+            return userRepository.findByName(name);
+        }
+        return this.allUsers();
+    }
+
     public UserModel saveUser( UserModel user ){
         return userRepository.save(user);
     }

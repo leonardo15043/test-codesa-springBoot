@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.testcodesaspringBoot.models.UserModel;
@@ -29,6 +30,11 @@ public class UserController {
     @GetMapping( path = "/{id_user}" )
     public Optional<UserModel> getById(@PathVariable("id_user") Long id_user){
         return this.userService.getById(id_user);
+    }
+
+    @GetMapping( path = "/query" )
+    public ArrayList<UserModel> getByName(@RequestParam("name") String name){
+        return this.userService.getByName(name);
     }
 
     @PostMapping
