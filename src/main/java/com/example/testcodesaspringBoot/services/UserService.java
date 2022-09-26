@@ -1,6 +1,7 @@
 package com.example.testcodesaspringBoot.services;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -16,6 +17,10 @@ public class UserService {
     
     public ArrayList<UserModel> allUsers(){
         return (ArrayList<UserModel>) userRepository.findAll();
+    }
+
+    public Optional<UserModel> getById(Long id_user){
+        return userRepository.findById(id_user);
     }
 
     public UserModel saveUser( UserModel user ){

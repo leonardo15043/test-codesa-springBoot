@@ -1,6 +1,7 @@
 package com.example.testcodesaspringBoot.controllers;
 
 import java.util.ArrayList;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -23,6 +24,11 @@ public class UserController {
     @GetMapping
     public ArrayList<UserModel> allUsers(){
         return userService.allUsers();
+    }
+
+    @GetMapping( path = "/{id_user}" )
+    public Optional<UserModel> getById(@PathVariable("id_user") Long id_user){
+        return this.userService.getById(id_user);
     }
 
     @PostMapping
