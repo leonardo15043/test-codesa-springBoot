@@ -11,6 +11,11 @@ public class UserModel {
     @Column(unique = true, nullable = false)
     private Long id_user;
 
+    @OneToOne()
+    @JoinColumn(name="fk_rol", insertable = false, updatable = false)
+    private RolModel rolModel;
+
+    private Integer id_rol;
     private String name;
     private Boolean active;
     private String email;
@@ -21,6 +26,14 @@ public class UserModel {
 
     public void setIdUser( Long id_user ){
         this.id_user = id_user;
+    }
+
+    public Integer getIdRol(){
+        return id_rol;
+    }
+
+    public void setIdRol( Integer id_rol ){
+        this.id_rol = id_rol;
     }
 
     public String getName(){

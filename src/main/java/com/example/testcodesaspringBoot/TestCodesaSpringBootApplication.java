@@ -7,7 +7,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 public class TestCodesaSpringBootApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(TestCodesaSpringBootApplication.class, args);
+		try {
+			SpringApplication.run(TestCodesaSpringBootApplication.class, args);
+		} catch (Exception e) {
+			e.printStackTrace(); 
+		}
 	}
 
 }
