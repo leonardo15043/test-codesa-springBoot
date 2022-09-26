@@ -21,4 +21,13 @@ public class UserService {
     public UserModel saveUser( UserModel user ){
         return userRepository.save(user);
     }
+
+    public boolean deleteUser(Long id_user){
+        try {
+            userRepository.deleteById(id_user);
+            return true;
+        } catch (Exception e) {
+            return false;
+        }
+    }
 }
