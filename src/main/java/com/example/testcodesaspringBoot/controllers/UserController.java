@@ -24,26 +24,50 @@ public class UserController {
     @Autowired
     UserService userService;
 
+    /*
+     * Get all users in the database 👦👨👲👳
+     * @return UserService 
+     */
     @GetMapping
     public ArrayList<UserModel> allUsers(){
         return userService.allUsers();
     }
 
+    /**
+     * Get user data 👵 📄
+     * @param id_user
+     * @return UserService 
+     */
     @GetMapping( path = "/{id_user}" )
     public Optional<UserModel> getById(@PathVariable("id_user") Long id_user){
         return this.userService.getById(id_user);
     }
 
+    /**
+     * Get the results corresponding to the search by name 💂⌛
+     * @param name
+     * @return UserService
+     */
     @GetMapping( path = "/query" )
     public ArrayList<UserModel> getByName(@RequestParam("name") String name){
         return this.userService.getByName(name);
     }
 
+    /**
+     * Save user data 👦✍
+     * @param user
+     * @return UserService
+     */
     @PostMapping
     public Object saveUser(@Valid @RequestBody UserModel user){
        return this.userService.saveUser(user);
     }
 
+    /**
+     * Delete a user 👳⛔
+     * @param id_user
+     * @return {String}
+     */
     @DeleteMapping( path = "/{id_user}" )
     public String deleteUser(@PathVariable("id_user") Long id_user){
         boolean ok = this.userService.deleteUser(id_user);
