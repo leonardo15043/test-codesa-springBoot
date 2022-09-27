@@ -1,5 +1,8 @@
 package com.example.testcodesaspringBoot.models;
 import javax.persistence.*;
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
+import javax.validation.constraints.NotNull;
 
 @Entity
 @Table(name = "users")
@@ -16,10 +19,17 @@ public class UserModel {
     private RolModel rolModel;
 
     @Column(name = "id_rol")
+    @NotNull
     private Long id_rol;
     
+    @NotBlank
     private String name;
+
+    @NotNull
     private Boolean active;
+
+    @NotBlank
+    @Email
     private String email;
 
     public Long getIdUser(){

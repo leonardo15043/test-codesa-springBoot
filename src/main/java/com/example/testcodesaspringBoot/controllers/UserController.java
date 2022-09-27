@@ -3,6 +3,8 @@ package com.example.testcodesaspringBoot.controllers;
 import java.util.ArrayList;
 import java.util.Optional;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -21,7 +23,7 @@ import com.example.testcodesaspringBoot.services.UserService;
 public class UserController {
     @Autowired
     UserService userService;
-
+    
     @GetMapping
     public ArrayList<UserModel> allUsers(){
         return userService.allUsers();
@@ -38,8 +40,8 @@ public class UserController {
     }
 
     @PostMapping
-    public UserModel saveUser(@RequestBody UserModel user){
-        return this.userService.saveUser(user);
+    public Object saveUser(@Valid @RequestBody UserModel user){
+       return this.userService.saveUser(user);
     }
 
     @DeleteMapping( path = "/{id_user}" )
@@ -47,7 +49,7 @@ public class UserController {
         boolean ok = this.userService.deleteUser(id_user);
         if (ok){
             return "Se eliminó el usuario correctamente ";
-        }else{
+        }else{ 
             return "No se pudo eliminar el usuario";
         }
     }

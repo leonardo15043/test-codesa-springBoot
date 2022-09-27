@@ -13,5 +13,7 @@ public interface UserRepository extends CrudRepository<UserModel,Long> {
 
     @Query( value = "SELECT u.* FROM users u WHERE u.name like %?1%", nativeQuery = true)
     public ArrayList<UserModel> findByName(String name);
-    
+
+    Boolean existsByName(String name);
+
 }

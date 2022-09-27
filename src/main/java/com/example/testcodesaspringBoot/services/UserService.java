@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
 import com.example.testcodesaspringBoot.models.UserModel;
@@ -30,7 +32,10 @@ public class UserService {
         return this.allUsers();
     }
 
-    public UserModel saveUser( UserModel user ){
+    public Object saveUser( UserModel user ){
+        if(userRepository.existsByName(user.getName())){
+            return new ResponseEntity<>("Este nombre ya existe",HttpStatus.CONFLICT);
+        }
         return userRepository.save(user);
     }
 
