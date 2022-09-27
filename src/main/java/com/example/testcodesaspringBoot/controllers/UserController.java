@@ -23,7 +23,7 @@ import com.example.testcodesaspringBoot.services.UserService;
 public class UserController {
     @Autowired
     UserService userService;
-    
+
     @GetMapping
     public ArrayList<UserModel> allUsers(){
         return userService.allUsers();
