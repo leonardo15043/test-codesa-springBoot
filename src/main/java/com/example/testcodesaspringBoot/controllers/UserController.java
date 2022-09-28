@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.testcodesaspringBoot.commons.ResponseHandler;
 import com.example.testcodesaspringBoot.models.UserModel;
 import com.example.testcodesaspringBoot.services.UserService;
 
@@ -74,9 +75,9 @@ public class UserController {
     public Object deleteUser(@PathVariable("id_user") Long id_user){
         boolean ok = this.userService.deleteUser(id_user);
         if (ok){
-            return new ResponseEntity<>("Se eliminó el usuario correctamente",HttpStatus.ACCEPTED);
+            return ResponseHandler.generateResponse("Se eliminó el usuario correctamente", HttpStatus.OK,null);
         }else{ 
-            return new ResponseEntity<>("No se pudo eliminar el usuario",HttpStatus.CONFLICT);
+            return ResponseHandler.generateResponse("No se pudo eliminar el usuario", HttpStatus.CONFLICT,null);
         }
     }
 }
