@@ -8,6 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 
+import com.example.testcodesaspringBoot.commons.ResponseHandler;
 import com.example.testcodesaspringBoot.models.UserModel;
 import com.example.testcodesaspringBoot.repositories.UserRepository;
 
@@ -34,7 +35,7 @@ public class UserService {
 
     public Object saveUser( UserModel user ){
         if(userRepository.existsByName(user.getName())){
-            return new ResponseEntity<>("Este nombre ya existe",HttpStatus.CONFLICT);
+            return ResponseHandler.generateResponse("Este nombre ya existe", HttpStatus.CONFLICT,user);
         }
         return userRepository.save(user);
     }
