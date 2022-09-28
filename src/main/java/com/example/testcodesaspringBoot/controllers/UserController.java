@@ -6,6 +6,8 @@ import java.util.Optional;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -69,12 +71,12 @@ public class UserController {
      * @return {String}
      */
     @DeleteMapping( path = "/{id_user}" )
-    public String deleteUser(@PathVariable("id_user") Long id_user){
+    public Object deleteUser(@PathVariable("id_user") Long id_user){
         boolean ok = this.userService.deleteUser(id_user);
         if (ok){
-            return "Se eliminó el usuario correctamente ";
+            return new ResponseEntity<>("Se eliminó el usuario correctamente",HttpStatus.ACCEPTED);
         }else{ 
-            return "No se pudo eliminar el usuario";
+            return new ResponseEntity<>("No se pudo eliminar el usuario",HttpStatus.CONFLICT);
         }
     }
 }
